@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
 const ShoppingCart = () => {
-  // Initialize state with an empty array for products
+
   const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
 
-  // Function to handle adding a new product
   const handleAddProduct = () => {
     if (productName.trim() !== '' && productPrice.trim() !== '') {
 
@@ -16,14 +15,13 @@ const ShoppingCart = () => {
         price: parseFloat(productPrice),
         quantity: 1,
       };
-      // Update state immutably by creating a new array
+
       setProducts([...products, newProduct]);
       setProductName(''); // Clear input fields
       setProductPrice('');
     }
   };
 
-  // Function to handle increasing quantity
   const increaseQuantity = (id) => {
     const updatedProducts = products.map((product) =>
       product.id === id
@@ -33,7 +31,6 @@ const ShoppingCart = () => {
     setProducts(updatedProducts);
   };
 
-  // Function to handle decreasing quantity
   const decreaseQuantity = (id) => {
     const updatedProducts = products.map((product) =>
       product.id === id && product.quantity > 1
@@ -43,13 +40,11 @@ const ShoppingCart = () => {
     setProducts(updatedProducts);
   };
 
-  // Function to handle removing a product
   const removeProduct = (id) => {
     const updatedProducts = products.filter((product) => product.id !== id);
     setProducts(updatedProducts);
   };
 
-  // Calculate total price
   const totalPrice = products.reduce(
     (total, product) => total + product.price * product.quantity,
     0
@@ -70,7 +65,7 @@ const ShoppingCart = () => {
           type="number"
           placeholder="Price"
           min="0"
-          step="0.01"
+          step="0.1"
           value={productPrice}
           onChange={(e) => setProductPrice(e.target.value)}
           
