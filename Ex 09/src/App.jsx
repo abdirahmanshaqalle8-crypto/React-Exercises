@@ -6,7 +6,6 @@ const GitHubUser = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Log any errors to the console whenever "error" changes
   useEffect(() => {
     if (error) {
       console.error('Error fetching GitHub user:', error);
